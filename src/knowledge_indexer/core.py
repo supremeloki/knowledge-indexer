@@ -35,3 +35,5 @@ class IndexedChunk:
     chunk_id: str
     doc_id: str
     text: str
+    token_count: int
+
