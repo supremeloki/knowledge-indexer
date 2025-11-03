@@ -37,3 +37,5 @@ class IndexedChunk:
     text: str
     token_count: int
 
+    @property
+    def uid(self) -> str:
