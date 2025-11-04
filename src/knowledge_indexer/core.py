@@ -42,3 +42,5 @@ class IndexedChunk:
         return f"{self.doc_id}#{self.chunk_id}"
 
 
+@dataclass(frozen=True)
+class SearchHit:
