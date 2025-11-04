@@ -40,3 +40,5 @@ class IndexedChunk:
     @property
     def uid(self) -> str:
         return f"{self.doc_id}#{self.chunk_id}"
+
+
