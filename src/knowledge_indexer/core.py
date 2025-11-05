@@ -46,3 +46,4 @@ class IndexedChunk:
 class SearchHit:
     chunk: IndexedChunk
     score: float
+
