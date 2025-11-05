@@ -44,3 +44,5 @@ class IndexedChunk:
 
 @dataclass(frozen=True)
 class SearchHit:
+    chunk: IndexedChunk
+    score: float
