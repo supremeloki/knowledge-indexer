@@ -47,3 +47,5 @@ class SearchHit:
     chunk: IndexedChunk
     score: float
 
+
+@dataclass
