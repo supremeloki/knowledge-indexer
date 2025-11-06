@@ -49,3 +49,5 @@ class SearchHit:
 
 
 @dataclass
+class IndexStatistics:
+    documents: int = 0
