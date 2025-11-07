@@ -52,3 +52,5 @@ class SearchHit:
 class IndexStatistics:
     documents: int = 0
     chunks: int = 0
+    vocabulary: int = 0
+    total_tokens: int = 0
