@@ -56,3 +56,4 @@ class IndexStatistics:
     total_tokens: int = 0
     built_at: float = field(default_factory=time.time)
 
+
