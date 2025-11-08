@@ -54,3 +54,5 @@ class IndexStatistics:
     chunks: int = 0
     vocabulary: int = 0
     total_tokens: int = 0
+    built_at: float = field(default_factory=time.time)
+
