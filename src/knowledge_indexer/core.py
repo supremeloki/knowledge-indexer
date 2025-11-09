@@ -57,3 +57,5 @@ class IndexStatistics:
     built_at: float = field(default_factory=time.time)
 
 
+def tokenize(text: str) -> list[str]:
+    return [token.lower() for token in TOKEN_PATTERN.findall(text)]
