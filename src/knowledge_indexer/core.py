@@ -59,3 +59,5 @@ class IndexStatistics:
 
 def tokenize(text: str) -> list[str]:
     return [token.lower() for token in TOKEN_PATTERN.findall(text)]
+
+
