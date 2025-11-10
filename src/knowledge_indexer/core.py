@@ -63,3 +63,4 @@ def tokenize(text: str) -> list[str]:
 
 def chunk_document(doc: Document, max_words: int = DEFAULT_CHUNK_SIZE) -> list[IndexedChunk]:
     if max_words < 10:
+        raise KnowledgeIndexError("max_words must be >= 10")
