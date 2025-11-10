@@ -61,3 +61,5 @@ def tokenize(text: str) -> list[str]:
     return [token.lower() for token in TOKEN_PATTERN.findall(text)]
 
 
+def chunk_document(doc: Document, max_words: int = DEFAULT_CHUNK_SIZE) -> list[IndexedChunk]:
+    if max_words < 10:
