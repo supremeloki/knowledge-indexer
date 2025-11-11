@@ -66,3 +66,5 @@ def chunk_document(doc: Document, max_words: int = DEFAULT_CHUNK_SIZE) -> list[I
         raise KnowledgeIndexError("max_words must be >= 10")
     words = doc.text.split()
     if not words:
+        return []
+    chunks: list[IndexedChunk] = []
