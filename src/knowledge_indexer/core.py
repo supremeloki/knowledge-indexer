@@ -69,3 +69,5 @@ def chunk_document(doc: Document, max_words: int = DEFAULT_CHUNK_SIZE) -> list[I
         return []
     chunks: list[IndexedChunk] = []
     for index in range(0, len(words), max_words):
+        window = words[index:index + max_words]
+        chunks.append(IndexedChunk(
