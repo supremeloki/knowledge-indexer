@@ -71,3 +71,5 @@ def chunk_document(doc: Document, max_words: int = DEFAULT_CHUNK_SIZE) -> list[I
     for index in range(0, len(words), max_words):
         window = words[index:index + max_words]
         chunks.append(IndexedChunk(
+            chunk_id=f"c{len(chunks)}",
+            doc_id=doc.doc_id,
