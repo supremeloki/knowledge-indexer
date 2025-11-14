@@ -76,3 +76,5 @@ def chunk_document(doc: Document, max_words: int = DEFAULT_CHUNK_SIZE) -> list[I
             text=" ".join(window),
             token_count=len(window),
         ))
+    return chunks
+
