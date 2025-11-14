@@ -74,3 +74,5 @@ def chunk_document(doc: Document, max_words: int = DEFAULT_CHUNK_SIZE) -> list[I
             chunk_id=f"c{len(chunks)}",
             doc_id=doc.doc_id,
             text=" ".join(window),
+            token_count=len(window),
+        ))
