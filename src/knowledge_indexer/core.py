@@ -78,3 +78,5 @@ def chunk_document(doc: Document, max_words: int = DEFAULT_CHUNK_SIZE) -> list[I
         ))
     return chunks
 
+
+class BM25Index:
