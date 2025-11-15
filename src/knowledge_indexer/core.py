@@ -80,3 +80,4 @@ def chunk_document(doc: Document, max_words: int = DEFAULT_CHUNK_SIZE) -> list[I
 
 
 class BM25Index:
+    def __init__(self, documents: Sequence[Document],
