@@ -85,3 +85,4 @@ class BM25Index:
         if not documents:
             raise EmptyCorpusError("at least one document required")
         self._chunks: list[IndexedChunk] = []
+        for doc in documents:
