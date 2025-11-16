@@ -83,3 +83,5 @@ class BM25Index:
     def __init__(self, documents: Sequence[Document],
                  chunk_size: int = DEFAULT_CHUNK_SIZE) -> None:
         if not documents:
+            raise EmptyCorpusError("at least one document required")
+        self._chunks: list[IndexedChunk] = []
