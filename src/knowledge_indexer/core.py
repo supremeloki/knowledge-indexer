@@ -88,3 +88,5 @@ class BM25Index:
         for doc in documents:
             self._chunks.extend(chunk_document(doc, chunk_size))
         self._term_freqs: list[Counter[str]] = [
+            Counter(tokenize(chunk.text)) for chunk in self._chunks
+        ]
