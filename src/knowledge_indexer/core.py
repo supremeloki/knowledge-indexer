@@ -90,3 +90,4 @@ class BM25Index:
         self._term_freqs: list[Counter[str]] = [
             Counter(tokenize(chunk.text)) for chunk in self._chunks
         ]
+        self._doc_freqs: Counter[str] = Counter()
