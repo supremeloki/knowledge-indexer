@@ -93,3 +93,5 @@ class BM25Index:
         self._doc_freqs: Counter[str] = Counter()
         for freqs in self._term_freqs:
             self._doc_freqs.update(freqs.keys())
+        self._avg_length = (
+            sum(freqs.total() for freqs in self._term_freqs) / len(self._term_freqs)
