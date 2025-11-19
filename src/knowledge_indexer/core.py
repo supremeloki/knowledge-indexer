@@ -91,3 +91,5 @@ class BM25Index:
             Counter(tokenize(chunk.text)) for chunk in self._chunks
         ]
         self._doc_freqs: Counter[str] = Counter()
+        for freqs in self._term_freqs:
+            self._doc_freqs.update(freqs.keys())
