@@ -95,3 +95,4 @@ class BM25Index:
             self._doc_freqs.update(freqs.keys())
         self._avg_length = (
             sum(freqs.total() for freqs in self._term_freqs) / len(self._term_freqs)
+            if self._term_freqs else 0.0
