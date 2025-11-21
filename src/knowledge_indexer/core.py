@@ -98,3 +98,5 @@ class BM25Index:
             if self._term_freqs else 0.0
         )
         self.statistics = IndexStatistics(
+            documents=len({d.doc_id for d in documents}),
+            chunks=len(self._chunks),
