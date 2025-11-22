@@ -100,3 +100,5 @@ class BM25Index:
         self.statistics = IndexStatistics(
             documents=len({d.doc_id for d in documents}),
             chunks=len(self._chunks),
+            vocabulary=len(self._doc_freqs),
+            total_tokens=sum(freqs.total() for freqs in self._term_freqs),
