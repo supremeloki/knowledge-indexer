@@ -103,3 +103,5 @@ class BM25Index:
             vocabulary=len(self._doc_freqs),
             total_tokens=sum(freqs.total() for freqs in self._term_freqs),
         )
+
+    @property
