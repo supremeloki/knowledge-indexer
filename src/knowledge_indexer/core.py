@@ -105,3 +105,5 @@ class BM25Index:
         )
 
     @property
+    def chunk_count(self) -> int:
+        return len(self._chunks)
