@@ -62,3 +62,4 @@ def test_search_ranks_matching_topic_first(indexer):
 def test_search_respects_top_k(indexer):
     hits = indexer.search("database", top_k=1)
     assert len(hits) == 1
+
