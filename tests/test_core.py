@@ -64,3 +64,4 @@ def test_search_respects_top_k(indexer):
     assert len(hits) == 1
 
 
+def test_filter_by_doc_ids(indexer):
