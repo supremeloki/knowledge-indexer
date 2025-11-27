@@ -65,3 +65,4 @@ def test_search_respects_top_k(indexer):
 
 
 def test_filter_by_doc_ids(indexer):
+    index = indexer.build()
