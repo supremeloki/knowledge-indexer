@@ -69,3 +69,4 @@ def test_filter_by_doc_ids(indexer):
     hits = index.search("persian model", top_k=10, filter_doc_ids={"db"})
     assert all(hit.chunk.doc_id == "db" for hit in hits)
 
+
