@@ -70,3 +70,4 @@ def test_filter_by_doc_ids(indexer):
     assert all(hit.chunk.doc_id == "db" for hit in hits)
 
 
+def test_irrelevant_terms_return_empty(indexer):
