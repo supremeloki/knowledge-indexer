@@ -72,3 +72,4 @@ def test_filter_by_doc_ids(indexer):
 
 def test_irrelevant_terms_return_empty(indexer):
     hits = indexer.search("zzz qqq nonexistent")
+    assert hits == []
