@@ -79,3 +79,4 @@ def test_add_after_build_dirties_index():
     indexer = KnowledgeIndexer().add_many(DOCS)
     indexer.build()
     indexer.add(Document("new", "fresh content here"))
+    assert indexer.statistics is None
