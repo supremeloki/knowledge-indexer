@@ -81,3 +81,4 @@ def test_add_after_build_dirties_index():
     indexer.add(Document("new", "fresh content here"))
     assert indexer.statistics is None
     indexer.search("fresh")
+    assert indexer.statistics is not None
