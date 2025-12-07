@@ -83,3 +83,4 @@ def test_add_after_build_dirties_index():
     indexer.search("fresh")
     assert indexer.statistics is not None
 
+
