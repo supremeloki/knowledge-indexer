@@ -84,3 +84,4 @@ def test_add_after_build_dirties_index():
     assert indexer.statistics is not None
 
 
+def test_remove_document(indexer):
