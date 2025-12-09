@@ -86,3 +86,4 @@ def test_add_after_build_dirties_index():
 
 def test_remove_document(indexer):
     indexer.build()
+    removed = indexer.remove("ops")
