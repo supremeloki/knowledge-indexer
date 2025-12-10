@@ -88,3 +88,4 @@ def test_remove_document(indexer):
     indexer.build()
     removed = indexer.remove("ops")
     assert removed
+    hits = indexer.search("cache warming")
