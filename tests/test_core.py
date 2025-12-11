@@ -89,3 +89,4 @@ def test_remove_document(indexer):
     removed = indexer.remove("ops")
     assert removed
     hits = indexer.search("cache warming")
+    assert all(h.chunk.doc_id != "ops" for h in hits)
