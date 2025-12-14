@@ -92,3 +92,4 @@ def test_remove_document(indexer):
     assert all(h.chunk.doc_id != "ops" for h in hits)
 
 
+def test_empty_corpus_rejected_at_build():
