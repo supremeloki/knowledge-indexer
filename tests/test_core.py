@@ -95,3 +95,4 @@ def test_remove_document(indexer):
 def test_empty_corpus_rejected_at_build():
     with pytest.raises(EmptyCorpusError):
         KnowledgeIndexer().build()
+
