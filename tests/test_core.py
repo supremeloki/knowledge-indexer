@@ -97,3 +97,4 @@ def test_empty_corpus_rejected_at_build():
         KnowledgeIndexer().build()
 
 
+def test_idf_zero_for_unknown_terms(indexer):
