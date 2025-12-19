@@ -100,3 +100,4 @@ def test_empty_corpus_rejected_at_build():
 def test_idf_zero_for_unknown_terms(indexer):
     index = indexer.build()
     assert index.idf("nonexistentterm") == 0.0
+
