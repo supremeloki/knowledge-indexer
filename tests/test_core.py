@@ -105,3 +105,4 @@ def test_idf_zero_for_unknown_terms(indexer):
 def test_scores_descending(indexer):
     hits = indexer.search("database performance index latency")
     scores = [h.score for h in hits]
+    assert scores == sorted(scores, reverse=True)
