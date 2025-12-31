@@ -107,3 +107,83 @@ class BM25Index:
     @property
     def chunk_count(self) -> int:
         return len(self._chunks)
+
+    @property
+    def avg_length(self) -> float:
+        return round(self._avg_length, 3)
+
+    def idf(self, term: str) -> float:
+        occurrences = self._doc_freqs.get(term, 0)
+        if occurrences == 0:
+            return 0.0
+        total = len(self._term_freqs)
+        return math.log((total - occurrences + 0.5) / (occurrences + 0.5) + 1.0)
+
+    def bm25_score(self, query_tokens: Sequence[str], chunk_index: int) -> float:
+        freqs = self._term_freqs[chunk_index]
+        length_norm = 1.0 - BM25_B + BM25_B * (freqs.total() / (self._avg_length or 1.0))
+        score = 0.0
+        for term in query_tokens:
+            term_frequency = freqs.get(term, 0)
+            if term_frequency == 0:
+                continue
+            numerator = term_frequency * (BM25_K1 + 1.0)
+            denominator = term_frequency + BM25_K1 * length_norm
+            score += self.idf(term) * (numerator / denominator)
+        return score
+
+    def search(self, query: str, top_k: int = 5,
+               filter_doc_ids: set[str] | None = None) -> list[SearchHit]:
+        query_tokens = tokenize(query)
+        scored: list[tuple[int, float]] = []
+        allowed = filter_doc_ids or {chunk.doc_id for chunk in self._chunks}
+        for index, chunk in enumerate(self._chunks):
+            if chunk.doc_id not in allowed:
+                continue
+            score = self.bm25_score(query_tokens, index)
+            if score > 0.0:
+                scored.append((index, score))
+        scored.sort(key=lambda pair: pair[1], reverse=True)
+        return [
+            SearchHit(chunk=self._chunks[index], score=round(score, 6))
+            for index, score in scored[:top_k]
+        ]
+
+
+class KnowledgeIndexer:
+    def __init__(self, chunk_size: int = DEFAULT_CHUNK_SIZE) -> None:
+        self._chunk_size = chunk_size
+        self._documents: dict[str, Document] = {}
+        self._index: BM25Index | None = None
+        self._dirty = False
+
+    def add(self, document: Document) -> "KnowledgeIndexer":
+        self._documents[document.doc_id] = document
+        self._dirty = True
+        return self
+
+    def add_many(self, documents: Iterable[Document]) -> "KnowledgeIndexer":
+        for document in documents:
+            self.add(document)
+        return self
+
+    def remove(self, doc_id: str) -> bool:
+        removed = self._documents.pop(doc_id, None) is not None
+        if removed:
+            self._dirty = True
+        return removed
+
+    def build(self) -> BM25Index:
+        if not self._documents:
+            raise EmptyCorpusError("no documents indexed")
+        self._index = BM25Index(list(self._documents.values()), self._chunk_size)
+        self._dirty = False
+        return self._index
+
+    def search(self, query: str, top_k: int = 5) -> list[SearchHit]:
+        index = self._index if (self._index and not self._dirty) else self.build()
+        return index.search(query, top_k)
+
+    @property
+    def statistics(self) -> IndexStatistics | None:
+        return self._index.statistics if self._index and not self._dirty else None
